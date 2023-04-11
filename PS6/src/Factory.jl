@@ -46,7 +46,11 @@ function _build_reaction_id_array(data::Dict{String,Any})::Array{String,1}
     reaction_id_array = Array{String,1}()
 
     # TODO: fill the reaction_id_array with the reaction id's from the data dictionary
-    # ....
+    reactions = data["reactions"];
+    for reaction in reactions
+        id_value = reaction["id"];
+        push!(reaction_id_array, id_value);
+    end
 
     # return -
     return reaction_id_array;
