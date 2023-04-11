@@ -67,7 +67,11 @@ function _build_bounds_array(data::Dict{String,Any})::Array{Float64,2}
     bounds_array = Array{Float64,2}(undef,number_of_reactions,2)
 
     # TODO: fill in the entries of the bounds array, first col is the lower bound, second col is the upper bound
-    # ...
+    for i in i:number_of_reactions[i];
+        reaction = list_of_reactions[i];
+        L = reaction["lower_bound"];
+        U = reaction["upper_bound"]
+        
 
     # return -
     return bounds_array
