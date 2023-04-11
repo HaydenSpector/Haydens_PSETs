@@ -1,7 +1,8 @@
 """
     recursive_compound_parser()
 """
-function recursive_compound_parser(::String; delim)
+function recursive_compound_parser(q::Queue, tmp::Queue{Char}, a::Array{String,1}; 
+    delim = ' ')
 
      # base case: we have no more characters in the character_arr - we are done
      if (isempty(q) == true)
@@ -48,7 +49,8 @@ end
 """
     recursive_compound_parser(compounds::Dict{String, MyChemicalCompoundModel}) -> Dict{String, MyChemicalCompoundModel}
 """
-function recursive_compound_parser(string::String; delim::Char=' ')::Dict{Int64,String}
+function recursive_compound_parser(string::String; 
+    delim::Char=' ')::Dict{Int64,String}
 
     # initialize -
     d = Dict{Int,String}()
@@ -71,6 +73,8 @@ function recursive_compound_parser(string::String; delim::Char=' ')::Dict{Int64,
         d[counter] = item;
         counter += 1
     end
+    # process the next character in the queue -
+    recursive_compound_parser(q, tmp, a; delim = delim);
 
     # return -
     return d
