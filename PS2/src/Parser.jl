@@ -1,10 +1,9 @@
 """
     recursive_compound_parser()
-
-TODO: Describe what this function does, the args and what we expect it to return
 """
-function recursive_compound_parser()
-    # TODO: Implement me
+function recursive_compound_parser(q::Queue, tmp::Queue{Char}, a::Array{String,1}; 
+    delim = ' ')
+
      # base case: we have no more characters in the character_arr - we are done
      if (isempty(q) == true)
         
@@ -49,8 +48,6 @@ end
 
 """
     recursive_compound_parser(compounds::Dict{String, MyChemicalCompoundModel}) -> Dict{String, MyChemicalCompoundModel}
-
-TODO: Describe what this function does, the args and what we expect it to return 
 """
 function recursive_compound_parser(string::String; 
     delim::Char=' ')::Dict{Int64,String}
@@ -67,6 +64,9 @@ function recursive_compound_parser(string::String;
     for c ∈ character_arr
         enqueue!(q, c);
     end
+
+    # recursive descent -
+    _recursive_reaction_parser(q, tmp, a; delim = delim);
 
     # convert to dictionary for the output
     for item ∈ a

@@ -36,5 +36,5 @@ function read_compounds_file(path::String)::Dict{String, MyChemicalCompoundModel
      end
  end
     #return 
-    return compounds
+    return compounds;
 end
