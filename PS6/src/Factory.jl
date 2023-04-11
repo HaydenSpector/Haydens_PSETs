@@ -27,7 +27,11 @@ function _build_metabolite_id_array(data::Dict{String,Any})::Array{String,1}
     metabolite_id_array = Array{String,1}()
 
     # TODO: fill the metabolite_id_array with the metabolite id's from the data dictionary
-    # ....
+    metabolites = data["metabolites"]
+    for metabolite in metabolites
+        id_value = metabolite["id"]
+        push!(metabolite_id_array, id_value)
+    end
 
     # return -
     return metabolite_id_array;
