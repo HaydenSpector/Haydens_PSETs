@@ -1,17 +1,16 @@
-#include Files
+# TODO: Fill me in with your program to compute the uknown model parameters from the data
+
 include("Include.jl")
 
-#load Data
-loading = loaddataset(joinpath(_PATH_TO_DATA, "PS5-dataset-w-repeats.csv"))
+loading = loaddataset(joinpath(_PATH_TO_DATA,"PS5-dataset-w-repeats.csv"))
 
-#call functions
-Matrix = build_data_matrix(loading)
-Vector = build_output_vector(loading)
+matrix = build_data_matrix(loading)
 
-# compute parameters -
-XINV = inv(transpose(X)*X)*transpose(X)
-β̂ = XINV*y;
+vector = build_output_vector(loading)
+
+mINV = inv(transpose(matrix)*matrix)*transpose(matrix)
+β̂ = mINV*vector
 
 # Step 2: estimate the error model.
-errors = y - X*β̂; 
-ϵ = errormodel(errors);
+errors = vector - matrix*β̂;
+ϵ = errormodel(errors)
