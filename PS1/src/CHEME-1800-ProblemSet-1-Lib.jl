@@ -1,7 +1,6 @@
 """
     encrypt(plaintext::String) -> Dict{Int64,String}
 
-Fill me in
 """
 
 function encrypt(plaintext::String)::Dict{Int64,String}
