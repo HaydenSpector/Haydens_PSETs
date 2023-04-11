@@ -3,16 +3,27 @@
 
 Fill me in
 """
-abstract type AbstractEncryptionKey end
 
 function encrypt(plaintext::String)::Dict{Int64,String}
-mutable struct DNAEncryptionKey <: AbstractEncryptionKey
+ # initialize -
+ message = Dict{Int64,String}()
+ counter = 0;
 
-    # data -
-    encryptionkey::Dict{Char, String}
+ # build encryptionkey -
+ encryption_model = _build(DNAEncryptionKey);
+ encryptionkey = encryption_model.encryptionkey;
 
-    # constructor 
-    DNAEncryptionKey() = new()
+ for c ∈ uppercase(plaintext)
+
+     # encrypt -
+     message[counter] = encryptionkey[c]
+
+     # update the counter -
+     counter = counter + 1
+ end
+
+ # return -
+ return message
 end
 
 
