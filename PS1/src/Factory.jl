@@ -58,5 +58,3 @@ function build(type::Type{DNAEncryptionKey})::DNAEncryptionKey
        # return -
        return model
    end
-
-end
