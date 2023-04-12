@@ -12,8 +12,12 @@ function _build_stoichiometric_matrix(data::Dict{String,Any})::Array{Float64,2}
     S = Array{Float64,2}(undef, number_of_metabolites, number_of_reactions);
     
     # TODO: fill in the entries of the stochiometric matrix 
-    # ...
-
+    for i in list_of_metabolites
+        for j in list_of_reactions
+            metabolite_id_array = S[i,j]
+        end
+    end
+    
     # return -
     return S
 end
