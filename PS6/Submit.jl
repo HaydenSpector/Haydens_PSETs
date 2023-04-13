@@ -8,4 +8,5 @@ data = readreactionfile(path_to_json_file);
 # build my stochiometric model -
 model = build(MyStoichiometricNetworkModel,data);
 
-rate = compute_maximum_growth_rate(model)
+# estimate the max growth rate -
+fluxes = compute_maximum_growth_rate(model);
