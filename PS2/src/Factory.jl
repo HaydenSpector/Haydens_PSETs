@@ -14,7 +14,9 @@ function build(type::Type{MyChemicalCompoundModel}, name::String, compound::Stri
 
     # add data to the model -
     model.name = name;
-    model.compound = compound;
+    model.reactants = reactants;
+    model.products = products;
+    model.reversible = reversible;
 
     # return -
     return model;
