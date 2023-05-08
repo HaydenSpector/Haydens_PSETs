@@ -1,4 +1,4 @@
-abstract type AbstractPriceTreeModel end
+abstract type AbstractPriceTreeModel end 
 abstract type AbstractAssetModel end
 abstract type AbstractDerivativeContractModel <: AbstractAssetModel end
 
