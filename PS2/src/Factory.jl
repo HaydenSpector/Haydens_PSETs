@@ -1,9 +1,11 @@
-"""
-    build(type::Type{MyChemicalCompoundModel}, name::String, compound::String)::MyChemicalCompoundModel
 
-Factory method to build an instance of the MyChemicalCompoundModel type. MyChemicalCompoundModel is a model of the
-information contained in the Compounds.data file
 """
+    read_compounds_file(path::String) -> Dict{String, MyChemicalCompoundModel}
+
+TODO: Describe what this function is doing, the args and the what is contained in the data that is returned.
+#It looks in the Compounds.data file and reads it. Then, it returns the list of compounds in the file.
+"""
+
 function build(type::Type{MyChemicalCompoundModel}, name::String, compound::String)::MyChemicalCompoundModel
 
     # check: name, reactants and products correct?
@@ -14,9 +16,7 @@ function build(type::Type{MyChemicalCompoundModel}, name::String, compound::Stri
 
     # add data to the model -
     model.name = name;
-    model.reactants = reactants;
-    model.products = products;
-    model.reversible = reversible;
+    model.compound = compound;
 
     # return -
     return model;
