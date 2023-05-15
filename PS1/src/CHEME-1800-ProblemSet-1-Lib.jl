@@ -1,58 +1,62 @@
 """
-    encrypt(plaintext::String) -> Dict{Int64,String}
+encrypt(plaintext::String) -> Dict{Int64,String}
 
+Fill me in
 """
+function encrypt(plaintext::String; 
+    encryptionmodel::Union{Nothing, AbstractEncryptionKey} = nothing)::Dict{Int64,String}
 
-function encrypt(plaintext::String)::Dict{Int64,String}
- # initialize -
- message = Dict{Int64,String}()
- counter = 0;
+    # check: do we have a key?
 
- # build encryptionkey -
- encryption_model = _build(DNAEncryptionKey);
- encryptionkey = encryption_model.encryptionkey;
+    # initialize -
+    message = Dict{Int64, String}();
+    counter = 0;
 
- for c ∈ uppercase(plaintext)
+    # grab the key -
+    encryptionkey = encryptionmodel.encryptionkey
 
-     # encrypt -
-     message[counter] = encryptionkey[c]
+    # main - iterate through upper case -
+    for c ∈ uppercase(plaintext)
 
-     # update the counter -
-     counter = counter + 1
- end
+        # encrypt -
+        message[counter] = encryptionkey[c]
 
- # return -
- return message
+        # update the counter -
+        counter = counter + 1
+    end
+
+    # return -
+    return message
 end
-
 
 """
     decrypt(encrypteddata::Dict{Int64,String}) -> String
 
 Fill me in
 """
-function decrypt(encrypteddata::Dict{Int64,String})::String
-# initialize -
-number_of_chars = length(encrypteddata)
-inverse_encryptionkey_dict = Dict{String, Char}()
-plaintext = Vector{Char}()
+function decrypt(encrytedtext::Dict{Int64,String}; 
+    encryptionmodel::Union{Nothing, AbstractEncryptionKey} = nothing)::String
 
-# build encryptionkey -
-encryption_model = _build(DNAEncryptionKey);
-encryptionkey = encryption_model.encryptionkey;
+    # initialize -
+    number_of_chars = length(encrytedtext)
+    inverse_key_dict = Dict{String, Char}()
+    message = Vector{Char}()
 
-# build the inverse_key -
-for (key, value) ∈ encryptionkey
-    inverse_encryptionkey_dict[value] = key
-end
+    # grab the key -
+    encryptionkey = encryptionmodel.encryptionkey
 
-for i ∈ 0:(number_of_chars - 1)
-    
-    codon = encrypteddata[i]
-    value = inverse_encryptionkey_dict[codon]
-    push!(plaintext, value)
-end
+    # build the inverse_key -
+    for (key, value) ∈ encryptionkey
+        inverse_key_dict[value] = key
+    end
 
-# return -
-return String(plaintext)
+    for i ∈ 0:(number_of_chars - 1)
+        
+        codon = encrytedtext[i]
+        value = inverse_key_dict[codon]
+        push!(message, value)
+    end
+
+    # return -
+    return String(message)
 end
